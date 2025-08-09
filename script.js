@@ -360,6 +360,16 @@ function renderFilteredProducts(filteredProducts) {
                 removeFromCart(productId);
             }
         });
+
+        // Cerrar menú al hacer clic en un enlace del menú
+        document.querySelectorAll('#MenuItems li a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) { // Solo para móviles
+                    navMenu.classList.remove('active');
+                }
+             });
+        });
+    
         
         // Cart modal
         cartIcon.addEventListener('click', function() {
