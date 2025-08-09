@@ -19,7 +19,7 @@
 
 body {
     background-color: var(--white);
-    color: var(--dark-color);
+    color: var(--success-color);
     line-height: 1.6;
 }
 
