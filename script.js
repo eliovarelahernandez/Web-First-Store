@@ -6,84 +6,84 @@ document.addEventListener('DOMContentLoaded', function() {
             name: 'Auriculares Inalámbricos',
             price: 59.99,
             category: 'electronics',
-            image: 'http://ca.pinterest.com/pin/56435801576747513'
+            image: 'image/audifonos.jpg'
         },
         {
             id: 2,
             name: 'Smartphone Android',
             price: 299.99,
             category: 'electronics',
-            image: 'https://via.placeholder.com/300x300?text=Smartphone'
+            image: 'image/iphone.jpg'
         },
         {
             id: 3,
             name: 'Tablet 10"',
             price: 199.99,
             category: 'electronics',
-            image: 'https://via.placeholder.com/300x300?text=Tablet'
+            image: 'image/tablet.jpg'
         },
         {
             id: 4,
             name: 'Reloj Inteligente',
             price: 129.99,
             category: 'electronics',
-            image: 'https://via.placeholder.com/300x300?text=Reloj'
+            image: 'image/applewatch.jpg'
         },
         {
             id: 5,
             name: 'Chocolates Variados',
             price: 9.99,
             category: 'candies',
-            image: 'https://via.placeholder.com/300x300?text=Chocolates'
+            image: 'image/galletas.jpg'
         },
         {
             id: 6,
             name: 'Gomitas de Frutas',
             price: 4.99,
             category: 'candies',
-            image: 'https://via.placeholder.com/300x300?text=Gomitas'
+            image: 'image/gomitas.jpg'
         },
         {
             id: 7,
             name: 'Caramelos Surtidos',
             price: 3.99,
             category: 'candies',
-            image: 'https://via.placeholder.com/300x300?text=Caramelos'
+            image: 'image/caramelos.jpg'
         },
         {
             id: 8,
             name: 'Chicles de Menta',
             price: 2.99,
             category: 'candies',
-            image: 'https://via.placeholder.com/300x300?text=Chicles'
+            image: 'image/chicles.jpg'
         },
         {
             id: 9,
             name: 'Jabón Líquido',
             price: 5.99,
             category: 'hygiene',
-            image: 'https://via.placeholder.com/300x300?text=Jabón'
+            image: 'image/jabonliquido.jpg'
         },
         {
             id: 10,
             name: 'Shampoo Anticaspa',
             price: 7.99,
             category: 'hygiene',
-            image: 'https://via.placeholder.com/300x300?text=Shampoo'
+            image: 'image/shampoo.jpg'
         },
         {
             id: 11,
             name: 'Crema Dental',
             price: 3.49,
             category: 'hygiene',
-            image: 'https://via.placeholder.com/300x300?text=Crema+Dental'
+            image: 'image/pastadental.jpg'
         },
         {
             id: 12,
             name: 'Desodorante Roll-On',
             price: 4.99,
             category: 'hygiene',
-            image: 'https://via.placeholder.com/300x300?text=Desodorante'
+            image: 'image/dosodrante.jpg'
         }
     ];
 

@@ -280,7 +280,7 @@ nav ul li a:hover {
 .add-to-cart {
     width: 100%;
     padding: 8px 0;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     color: var(--white);
     border: none;
     border-radius: 5px;
