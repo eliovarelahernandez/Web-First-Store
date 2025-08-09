@@ -291,7 +291,7 @@ nav ul li a:hover {
 }
 
 .add-to-cart:hover {
-    background-color: #3dbeb6;
+    background-color: var(--dark-color);
 }
 
 /* Cart Modal */
