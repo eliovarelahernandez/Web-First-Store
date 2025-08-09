@@ -927,7 +927,48 @@ label[required]::after {
     background-color: #ff5252;
 }
 
+@media (max-width: 576px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr); /* Muestra 2 productos por fila */
+        gap: 15px; /* Reduce el espacio entre productos */
+    }
+    
+    /* Ajusta el tamaño de las tarjetas de producto */
+    .product-card {
+        width: 100%; /* Ocupa todo el ancho disponible */
+        max-width: none; /* Elimina cualquier límite máximo */
+    }
+    
+    /* Ajusta el tamaño de las imágenes */
+    .product-image {
+        height: 150px; /* Reduce la altura de la imagen */
+    }
+    
+    /* Ajusta otros elementos si es necesario */
+    .product-info {
+        padding: 10px;
+    }
+    
+    .product-name {
+        font-size: 14px;
+    }
+    
+    .product-price {
+        font-size: 16px;
+    }
+    
+    .add-to-cart {
+        font-size: 12px;
+        padding: 6px 0;
+    }
+}
 
+@media (min-width: 577px) and (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 productos por fila */
+        gap: 20px;
+    }
+}
 
 
 
