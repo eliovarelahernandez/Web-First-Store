@@ -19,7 +19,7 @@
 
 body {
     background-color: var(--white);
-    color: var(--success-color);
+    color: var(--dark-color);
     line-height: 1.6;
 }
 
@@ -574,6 +574,11 @@ footer {
     color: var(--gray);
 }
 
+
+.hero-search { 
+    display: none !important ; 
+}
+
 /* Responsive Styles */
 @media (max-width: 992px) {
     .product-grid {
@@ -582,6 +587,10 @@ footer {
 }
 
 @media (max-width: 768px) {
+    .hidden-mobile{
+        display: none;
+    }
+
     .menu-toggle {
         display: block;
     }
@@ -622,7 +631,61 @@ footer {
     .footer-content {
         grid-template-columns: 1fr;
     }
+
+ .hidden-desktop {
+        display: flex !important;
+        width: 100%;
+        max-width: 300px;
+        margin: 15px auto 0;
+        height: 36px;
+    }
+    
+    /* Estilos específicos del buscador móvil */
+    .hero-search {
+        display: flex !important;
+        align-items: stretch;
+    }
+    
+    #mobile-search {
+        padding: 8px 15px;
+        border: 1px solid var(--gray);
+        border-right: none;
+        border-radius: 20px 0 0 20px;
+        width: calc(100% - 40px);
+        outline: none;
+        font-size: 14px;
+        height: 100%;
+    }
+    
+    #mobile-search-btn {
+        width: 40px;
+        background-color: var(--primary-color);
+        color: white;
+        border: 1px solid var(--primary-color);
+        border-radius: 0 20px 20px 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding: 0;
+    }
+    
+    #mobile-search-btn i {
+        font-size: 16px;
+        margin: 0;
+    }
+    
+    /* Oculta el buscador de desktop en móvil */
+    .search-box {
+        display: none !important;
+    }
 }
+
+
+
+    
+
 
 @media (max-width: 576px) {
     .hero {
@@ -644,6 +707,12 @@ footer {
     .cart-modal {
         width: 100%;
     }
+
+     
+
+  
+
+
 }
 
 
@@ -824,3 +893,38 @@ label[required]::after {
     content: " *";
     color: var(--primary-color);
 }
+
+/* estilo para boton de buscar */
+/* Añade esto junto a los estilos del navbar */
+.search-box {
+    display: flex;
+    align-items: center;
+    margin-left: 20px; /* Ajusta según necesidad */
+}
+
+#search-input {
+    padding: 8px 15px;
+    border: 1px solid var(--gray);
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    width: 200px;
+}
+
+#search-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0 20px 20px 0;
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+#search-btn:hover {
+    background-color: #ff5252;
+}
+
+
+
+
+
+

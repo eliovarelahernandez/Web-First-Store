@@ -16,6 +16,7 @@
                 <div class="logo">
                     <h1>Hemsly'<span>Store</span></h1>
                 </div>
+
                 <nav>
                     <ul id="MenuItems">
                         <li><a href="#home">Inicio</a></li>
@@ -26,6 +27,11 @@
                         <li><a href="#contact">Contacto</a></li>
                     </ul>
                 </nav>
+                                  <!-- boton para buscar  -->
+                    <div class="search-box">
+                        <input type="text" id="search-input" placeholder="Buscar productos...">
+                        <button id="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
                 <div class="cart-icon">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count">0</span>
@@ -38,15 +44,23 @@
     </header>
 
     <!-- Hero Banner -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h2>Las mejores ofertas<br>en un solo lugar</h2>
-                <p>Electrónicos, golosinas y productos de aseo con envío rápido</p>
-                <a href="#products" class="btn">Explorar ahora</a>
+   <section class="hero" id="home">
+    <div class="container">
+        <div class="hero-content">
+            <h2>Las mejores ofertas<br>en un solo lugar</h2>
+            <p>Electrónicos, golosinas y productos de aseo con envío rápido</p>
+            
+            <!-- Botón para desktop -->
+            <a href="#products" class="btn hidden-mobile">Explorar ahora</a>
+            
+            <!-- Buscador para móviles (oculto en desktop) -->
+            <div class="hero-search hidden-desktop">
+                <input type="text" id="mobile-search" placeholder="Buscar...">
+                <button id="mobile-search-btn"><i class="fas fa-search"></i></button>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Featured Categories -->
 

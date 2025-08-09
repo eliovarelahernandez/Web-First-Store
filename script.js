@@ -107,6 +107,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const categoryFilter = document.querySelector('.category-filter');
     const filterBtns = document.querySelectorAll('.filter-btn');
     const miniCartNotification = document.createElement('div');
+
+    const searchInput = document.getElementById('search-input');
+    const searchBtn = document.getElementById('search-btn');
+
+    const mobileSearchInput = document.getElementById('mobile-search');
+    const mobileSearchBtn = document.getElementById('mobile-search-btn');
+    
     miniCartNotification.className = 'mini-cart-notification';
     document.body.appendChild(miniCartNotification);
 
@@ -475,4 +482,53 @@ function renderFilteredProducts(filteredProducts) {
 
     // Initialize the app
     init();
+
+
+// Función de búsqueda
+function searchProducts() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const filteredProducts = products.filter(product => 
+        product.name.toLowerCase().includes(searchTerm)
+    );
+
+    if (filteredProducts.length > 0) {
+        renderFilteredProducts(filteredProducts);
+        // Desplázate a la sección de productos
+        document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+    } else {
+        productGrid.innerHTML = '<p class="no-products">No encontramos "' + searchTerm + '"</p>';
+    }
+}
+
+// Event listeners
+searchBtn.addEventListener('click', searchProducts);
+searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') searchProducts();
 });
+
+
+// Función de búsqueda (reutiliza la misma función del buscador desktop)
+function handleMobileSearch() {
+    const searchTerm = mobileSearchInput.value.toLowerCase();
+    const filteredProducts = products.filter(product => 
+        product.name.toLowerCase().includes(searchTerm)
+    );
+    
+    if (filteredProducts.length > 0) {
+        renderFilteredProducts(filteredProducts);
+        document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+    } else {
+        productGrid.innerHTML = '<p class="no-products">No hay resultados para "' + searchTerm + '"</p>';
+    }
+}
+
+// Event listeners
+mobileSearchBtn.addEventListener('click', handleMobileSearch);
+mobileSearchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') handleMobileSearch();
+});
+
+
+
+});
+
