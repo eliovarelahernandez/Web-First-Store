@@ -36,6 +36,12 @@
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count">0</span>
                 </div>
+
+                <div class="whatsapp-toggle" id="whatsapp-toggle">
+                    <i class="fab fa-whatsapp"></i>
+                    <span class="notification-badge" id="notification-badge">1</span>
+                </div>
+
                 <div class="menu-toggle">
                     <i class="fas fa-bars"></i>
                 </div>
@@ -239,6 +245,46 @@
             </div>
         </div>
     </footer>
+
+    <!-- WhatsApp Chatbox -->
+    <div class="whatsapp-chatbox" id="whatsapp-chatbox">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <div class="chat-header-avatar">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <div class="chat-header-text">
+                    <h3>Soporte Hemsly'Store</h3>
+                    <p>En línea</p>
+                </div>
+            </div>
+            <div class="chat-header-actions">
+                <button id="minimize-chat"><i class="fas fa-minus"></i></button>
+                <button id="close-chat"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="chat-body" id="chat-body">
+            <div class="chat-message received">
+                <div class="message-bubble">
+                    <div class="message-text">
+                        ¡Hola! 👋 ¿En qué puedo ayudarte hoy? Puedes preguntar sobre productos, precios, envíos o métodos de pago.
+                    </div>
+                    <div class="message-time">10:30</div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-footer">
+            <textarea id="user-input" class="chat-input" placeholder="Escribe tu mensaje..."></textarea>
+            <button id="send-btn" class="chat-send-btn">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+</div>
+
+    <!-- Botón flotante alternativo -->
+    <div class="whatsapp-float" id="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </div>
 
     <script src="script.js"></script>
 </body>
