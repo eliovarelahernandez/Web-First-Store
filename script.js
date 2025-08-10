@@ -413,7 +413,7 @@ function renderFilteredProducts(filteredProducts) {
             }, 0);
             
             // Generar detalles del pedido
-            let orderDetails = `📦 *Nuevo Pedido Hemslt'Store* 📦\n\n`;
+            let orderDetails = `📦 *Nuevo Pedido Hemsly'Store* 📦\n\n`;
             orderDetails += `👤 *Cliente:* ${name}\n`;
             orderDetails += `📱 *Teléfono:* ${phone}\n`;
             orderDetails += `🏠 *Dirección:* ${address}\n\n`;
@@ -433,7 +433,7 @@ function renderFilteredProducts(filteredProducts) {
             
             // Reemplaza ESTE_NUMERO con el número del grupo WhatsApp (sin + ni espacios)
             // Formato: 593987654321 (código país + número)
-            const whatsappGroupNumber = "5356880708"
+            const whatsappGroupNumber = "5355187812"
             
             // Crear enlace de WhatsApp
             const whatsappLink = `https://wa.me/${whatsappGroupNumber}?text=${encodedMessage}`;
@@ -443,7 +443,7 @@ function renderFilteredProducts(filteredProducts) {
             
             // Mostrar instrucciones de pago
             const cardNumber = 'XXXX-XXXX-XXXX-' + Math.floor(1000 + Math.random() * 9000);
-            const phoneNumber = '5356880708';
+            const phoneNumber = '5355187812';
             
             paymentInfo.innerHTML = `
                 <p>Gracias por tu compra, ${name}!</p>
