@@ -540,5 +540,303 @@ mobileSearchInput.addEventListener('keypress', (e) => {
 
 
 
+/* Script of  ChatBot */
+
+    // WhatsApp Chatbox
+    // WhatsApp Chatbox - Versión corregida
+    const chatbox = document.getElementById('whatsapp-chatbox');
+    const chatBody = document.getElementById('chat-body');
+    const userInput = document.getElementById('user-input');
+    const sendBtn = document.getElementById('send-btn');
+    const whatsappToggle = document.getElementById('whatsapp-toggle');
+    const closeBtn = document.getElementById('close-chat');
+    const minimizeBtn = document.getElementById('minimize-chat');
+    const whatsappFloat = document.getElementById('whatsapp-float');
+    const notificationBadge = document.getElementById('notification-badge');
+
+// Base de conocimiento de respuestas
+const knowledgeBase = {
+    "productos": "Tenemos 3 categorías principales: <br><br>1️⃣ <b>Electrónicos</b>: Auriculares, smartphones, tablets, relojes inteligentes<br>2️⃣ <b>Golosinas</b>: Chocolates, gomitas, caramelos, chicles<br>3️⃣ <b>Aseo</b>: Jabones, shampoo, crema dental, desodorante<br><br>¿Te interesa alguna categoría en particular?",
+    "precios": "Los precios varían según el producto. Por ejemplo:<br><br>🎧 Auriculares: $59.99<br>📱 Smartphone: $299.99<br>🍫 Chocolates: $9.99<br>🧴 Shampoo: $7.99<br><br>¿Quieres conocer el precio de algún producto específico?",
+    "envios": "🚚 <b>Envíos y entregas</b>:<br><br>- Realizamos envíos dentro de toda la universidad<br>- Tiempo de entrega: 1-2 horas en días hábiles<br>- Envío gratis para compras mayores a $300<br>- Horario de entrega: 8am - 8pm<br><br>¿Necesitas más información?",
+    "pagos": "💳 <b>Métodos de pago</b>:<br><br>- Transfermóvil<br>- Enzona<br>- Tarjetas de crédito/débito<br>- Efectivo al recibir (solo dentro de la UCLV)<br><br>¿Algún método en particular?",
+    "ofertas": "🎁 <b>Ofertas especiales</b>:<br><br>- 10% de descuento en tu primera compra con código: BIENVENIDO<br>- Descuentos por volumen en compras mayores a $200<br>- Combos especiales en electrónicos y golosinas<br><br>¿Quieres ver nuestras ofertas actuales?",
+    "seguimiento": "Para consultar el estado de tu pedido, necesito tu número de pedido. También puedes contactarnos directamente al +53 56880708 con tu número de pedido.",
+    "hola": "¡Hola! 👋 ¿En qué puedo ayudarte hoy? Puedes preguntar sobre productos, precios, envíos o métodos de pago.",
+    "gracias": "¡Gracias a ti! 😊 ¿Hay algo más en lo que pueda ayudarte?",
+    "contacto": "Puedes contactarnos:<br><br>📞 Teléfono: +53 56880708<br>✉️ Email: hemslyhernandezdiaz@gmail.com<br>📍 Ubicación: Universidad Central Marta Abreu de Las Villas",
+    "default": "Gracias por tu mensaje. ¿Puedes reformular tu pregunta? También puedes contactarnos directamente al +53 56880708 para asistencia inmediata."
+};
+
+// Mostrar el chatbox
+function openChatbox() {
+    chatbox.style.display = 'flex';
+    setTimeout(() => {
+        chatbox.classList.add('active');
+    }, 10);
+    whatsappToggle.classList.add('active');
+    whatsappFloat.style.display = 'none';
+    whatsappToggle.classList.remove('has-notification');
+    notificationBadge.style.display = 'none';
+    
+    // Desplazar al final del chat
+    setTimeout(() => {
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }, 100);
+}
+
+// Ocultar el chatbox
+function closeChatbox() {
+    chatbox.classList.remove('active');
+    setTimeout(() => {
+        chatbox.style.display = 'none';
+        whatsappFloat.style.display = 'flex';
+    }, 300);
+    whatsappToggle.classList.remove('active');
+}
+
+// Añadir mensaje al chat
+function addMessage(text, sender) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `chat-message ${sender}`;
+    
+    const bubbleDiv = document.createElement('div');
+    bubbleDiv.className = 'message-bubble';
+    
+    const textDiv = document.createElement('div');
+    textDiv.className = 'message-text';
+    textDiv.innerHTML = text;
+    
+    const timeDiv = document.createElement('div');
+    timeDiv.className = 'message-time';
+    timeDiv.textContent = getCurrentTime();
+    
+    bubbleDiv.appendChild(textDiv);
+    bubbleDiv.appendChild(timeDiv);
+    messageDiv.appendChild(bubbleDiv);
+    chatBody.appendChild(messageDiv);
+    
+    // Desplazar al último mensaje
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+// Obtener hora actual
+function getCurrentTime() {
+    const now = new Date();
+    return `${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')}`;
+}
+
+// Procesar la pregunta del usuario
+function processQuestion(question) {
+    const lowerQuestion = question.toLowerCase();
+    
+    // Comprobar coincidencias
+    if (lowerQuestion.includes('hola') || lowerQuestion.includes('buenas')) {
+        return knowledgeBase.hola;
+    }
+    if (lowerQuestion.includes('producto') || lowerQuestion.includes('artículo') || lowerQuestion.includes('item')) {
+        return knowledgeBase.productos;
+    }
+    if (lowerQuestion.includes('precio') || lowerQuestion.includes('cuesta') || lowerQuestion.includes('vale') || lowerQuestion.includes('costo')) {
+        return knowledgeBase.precios;
+    }
+    if (lowerQuestion.includes('envío') || lowerQuestion.includes('entrega') || lowerQuestion.includes('recibir') || lowerQuestion.includes('llegar')) {
+        return knowledgeBase.envios;
+    }
+    if (lowerQuestion.includes('pago') || lowerQuestion.includes('transfer') || lowerQuestion.includes('efectivo') || lowerQuestion.includes('tarjeta') || lowerQuestion.includes('enzona')) {
+        return knowledgeBase.pagos;
+    }
+    if (lowerQuestion.includes('oferta') || lowerQuestion.includes('descuento') || lowerQuestion.includes('promo')) {
+        return knowledgeBase.ofertas;
+    }
+    if (lowerQuestion.includes('pedido') || lowerQuestion.includes('orden') || lowerQuestion.includes('seguimiento') || lowerQuestion.includes('estado')) {
+        return knowledgeBase.seguimiento;
+    }
+    if (lowerQuestion.includes('contacto') || lowerQuestion.includes('teléfono') || lowerQuestion.includes('email') || lowerQuestion.includes('ubicación')) {
+        return knowledgeBase.contacto;
+    }
+    if (lowerQuestion.includes('gracias') || lowerQuestion.includes('agradezco')) {
+        return knowledgeBase.gracias;
+    }
+    
+    // Si no coincide con nada
+    return knowledgeBase.default;
+}
+
+// Manejar el envío de mensajes
+function sendMessage() {
+    const message = userInput.value.trim();
+    if (message) {
+        // Añadir mensaje del usuario
+        addMessage(message, 'sent');
+        
+        // Procesar y obtener respuesta
+        setTimeout(() => {
+            const response = processQuestion(message);
+            addMessage(response, 'received');
+            
+            // Añadir preguntas rápidas después de la respuesta
+            if (!message.includes('gracias')) {
+                addQuickQuestions();
+            }
+        }, 1000);
+        
+        // Limpiar input
+        userInput.value = '';
+        userInput.style.height = 'auto';
+    }
+}
+
+// Añadir preguntas rápidas
+function addQuickQuestions() {
+    const questions = [
+        "Ver productos destacados",
+        "Consultar métodos de pago",
+        "Información de envíos",
+        "Ofertas especiales"
+    ];
+    
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'chat-message received';
+    
+    const bubbleDiv = document.createElement('div');
+    bubbleDiv.className = 'message-bubble';
+    
+    const textDiv = document.createElement('div');
+    textDiv.className = 'message-text';
+    textDiv.innerHTML = "¿Te interesa algo más?";
+    
+    const questionsDiv = document.createElement('div');
+    questionsDiv.className = 'quick-questions';
+    
+    questions.forEach(q => {
+        const btn = document.createElement('div');
+        btn.className = 'question-btn';
+        btn.textContent = q;
+        btn.onclick = function() {
+            addMessage(q, 'sent');
+            setTimeout(() => {
+                const response = processQuestion(q);
+                addMessage(response, 'received');
+                addQuickQuestions();
+            }, 1000);
+        };
+        questionsDiv.appendChild(btn);
+    });
+    
+    const timeDiv = document.createElement('div');
+    timeDiv.className = 'message-time';
+    timeDiv.textContent = getCurrentTime();
+    
+    bubbleDiv.appendChild(textDiv);
+    bubbleDiv.appendChild(questionsDiv);
+    bubbleDiv.appendChild(timeDiv);
+    messageDiv.appendChild(bubbleDiv);
+    chatBody.appendChild(messageDiv);
+    
+    // Desplazar al último mensaje
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+/*
+// Inicializar el chatbox
+function initChatbox() {
+    // Event listeners
+    whatsappToggle.addEventListener('click', openChatbox);
+    whatsappFloat.addEventListener('click', openChatbox);
+    closeBtn.addEventListener('click', closeChatbox);
+    minimizeBtn.addEventListener('click', closeChatbox);
+    sendBtn.addEventListener('click', sendMessage);
+    
+    userInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
+    });
+    
+    // Autoajustar altura del textarea
+    userInput.addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+    });
+    
+    // Mostrar notificación después de 10 segundos
+    setTimeout(() => {
+        if (!chatbox.classList.contains('active')) {
+            whatsappToggle.classList.add('has-notification');
+            notificationBadge.style.display = 'flex';
+        }
+    }, 10000);
+    
+    // Preguntas rápidas iniciales
+    document.querySelectorAll('.question-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const question = this.getAttribute('data-question');
+            addMessage(this.textContent, 'sent');
+            setTimeout(() => {
+                const response = knowledgeBase[question] || knowledgeBase.default;
+                addMessage(response, 'received');
+                addQuickQuestions();
+            }, 1000);
+        });
+    });
+}
+*/
+
+// Inicializar el chatbox
+function initChatbox() {
+    // Event listeners
+    whatsappToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        openChatbox();
+    });
+    
+    whatsappFloat.addEventListener('click', function(e) {
+        e.stopPropagation();
+        openChatbox();
+    });
+    
+    closeBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        closeChatbox();
+    });
+    
+    minimizeBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        closeChatbox();
+    });
+    
+    sendBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        sendMessage();
+    });
+    
+    userInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
+    });
+    
+    // Autoajustar altura del textarea
+    userInput.addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+    });
+    
+    // Mostrar notificación después de 10 segundos
+    setTimeout(() => {
+        if (!chatbox.classList.contains('active')) {
+            whatsappToggle.classList.add('has-notification');
+            notificationBadge.style.display = 'flex';
+        }
+    }, 10000);
+}
+
+// Iniciar el chatbox cuando el documento esté listo
+initChatbox();
 });
+
+
 
