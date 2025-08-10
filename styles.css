@@ -1174,7 +1174,7 @@ label[required]::after {
     border-color: var(--whatsapp-green);
 }
 
-/* Botón en navbar */
+/* Botón en navbar
 .navbar .whatsapp-toggle {
     margin-left: 15px;
     cursor: pointer;
@@ -1213,7 +1213,12 @@ label[required]::after {
 
 .navbar .whatsapp-toggle.has-notification .notification-badge {
     display: flex;
+} */
+ 
+.whatsapp-toggle{
+    display: none;
 }
+
 
 /* Botón flotante alternativo */
 .whatsapp-float {
